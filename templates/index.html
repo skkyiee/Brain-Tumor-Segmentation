@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brain Tumor Segmentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-5">
+    <h1 class="text-center mb-4">Brain Tumor Segmentation</h1>
+    <form method="post" enctype="multipart/form-data" class="text-center mb-4">
+        <input type="file" name="image" required>
+        <button class="btn btn-primary" type="submit">Upload & Predict</button>
+    </form>
+
+    {% if original_img %}
+    <div class="row text-center">
+        <div class="col">
+            <h4>Original MRI</h4>
+            <img src="{{ original_img }}" width="300">
+        </div>
+        <div class="col">
+            <h4>Predicted Tumor Mask</h4>
+            <img src="{{ mask_img }}" width="300">
+        </div>
+    </div>
+    <h3 class="text-center mt-4" style="color: {{ 'green' if not tumor else 'red' }}">
+        {{ "No Tumor Found." if not tumor else "Tumor Detected!" }}
+    </h3>
+    {% endif %}
+</body>
+</html>
